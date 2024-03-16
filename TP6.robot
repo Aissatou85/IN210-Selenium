@@ -5,7 +5,9 @@ Test Setup    ouvrir prestashop
 Test Teardown    fermer prestashop
 
 *** Variables ***
-    
+${URL}        https://www.qualifiez.fr/monPrestashop2/prestashop/index.php
+${HOME_TITLE}        monPrestashop
+
 
 *** Test Cases ***
 test1
@@ -17,11 +19,16 @@ test2
     mug    Il y a 5 produits.
     T-shirt    Il y a 1 produit.
 
+test3
+    Survoler Vetements
+    Menu Homme Doit Etre Visible
+   
+
 
 *** Keywords ***
 ouvrir prestashop
-    Open Browser    https://www.qualifiez.fr/monPrestashop2/prestashop/index.php      chrome
-    Title should be    monPrestashop 
+    Open Browser    ${URL}      chrome
+    Title should be   ${HOME_TITLE}
     Maximize Browser Window
 
 fermer prestashop
@@ -44,4 +51,12 @@ Rechercher et verifier
      [Arguments]    ${item}    ${text}    
      Rechercher    ${item}   
      Verifier recherche    ${text}    ${item}
+
+Survoler Vetements
+    Mouse Over    xpath= //*[@id="category-3"]/a  
+
+Menu Homme Doit Etre Visible
+    Wait Until Element Is Visible    xpath=//*[@id="category-4"]/a    5s    
+    Log    Le menu Homme est maintenant visible
+
 
