@@ -80,7 +80,7 @@ Mouse hover
     ${subelem}    Find element in menu    ${path}/descendant::    ${subcategory}
     Element Should Be Visible    ${subelem}
     Mouse Out    ${elem}
-    # Positionne le souris loin du menu et du sousmenu
+    # Positionne la souris loin du menu et du sousmenu
     Mouse Over    ${logoPath} 
     Wait Until Element Is Not Visible    ${subelem}    5s
     
