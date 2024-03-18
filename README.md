@@ -33,12 +33,8 @@ L'utilisation des keywords présente plusieurs avantages significatifs pour l'au
 
 ## Question 5 :
 
-L'approche de test utilisé est data-driven car les cas de test sont exécutés en utilisant un ensemble de données d'entrée.L'idée est de séparer la logique du test des données avec lesquelles il est exécuté, permettant ainsi d'exécuter le même test avec de nombreuses variations de données sans réécrire le code du test pour chaque nouvelle entrée. Cette approche augmente la couverture de test et l'efficacité en permettant de tester rapidement plusieurs scénarios avec un minimum de code répété.
-
-
-
-
-
-
-
-
+ L'approche de test utilisé est data-driven et aussi orientée par Keywords. 
+ 
+ La première car les cas de test sont exécutés en utilisant un ensemble de données d'entrée.L'idée est de séparer la logique du test des données avec lesquelles il est exécuté, permettant ainsi d'exécuter le même test avec de nombreuses variations de données sans réécrire le code du test pour chaque nouvelle entrée. Cette approche augmente la couverture de test et l'efficacité en permettant de tester rapidement plusieurs scénarios avec un minimum de code répété. 
+ 
+ La deuxième car les actions sont encapsulées à la fois dans des mots-clés fournis par la bibliothèque SeleniumLibrary et dans des mots-clés personnalisés. Cette approche où les tests sont écrits en utilisant des mots-clés significatifs qui décrivent l'action en cours d'exécution.
