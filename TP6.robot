@@ -7,6 +7,7 @@ Test Teardown    fermer prestashop
 ${URL}        https://www.qualifiez.fr/monPrestashop2/prestashop/index.php
 ${HOME_TITLE}        monPrestashop
 ${menuxPath}    //*[starts-with(@id, "category-")]/
+${logoPath}    //*[@id="_desktop_logo"]/*
 
 *** Test Cases ***
 test1
@@ -26,7 +27,6 @@ test4
     ${elem}     Find element in menu    ${menuxPath}    VÊTEMENTS
     Element Text Should Be    ${elem}    VÊTEMENTS    ignore_case=True
     Mouse hover    ${elem}    HOMMES    ${menuxPath}
-
 
 *** Keywords ***
 ouvrir prestashop
@@ -80,7 +80,7 @@ Mouse hover
     ${subelem}    Find element in menu    ${path}/descendant::    ${subcategory}
     Element Should Be Visible    ${subelem}
     Mouse Out    ${elem}
-    # Je sais pas pourquoi mais il prend beaucoup de temps pour disparetre quelques fois sur le teste
-    # C'est pourquoi j'ai mis 15s de attente.
-    # Wait Until Element Is Not Visible    ${subelem}    15s
+    # Positionne le souris loin du menu et du sousmenu
+    Mouse Over    ${logoPath} 
+    Wait Until Element Is Not Visible    ${subelem}    5s
     
