@@ -1,4 +1,3 @@
-
 *** Settings ***
 Library    SeleniumLibrary
 Test Setup    ouvrir prestashop
@@ -7,7 +6,7 @@ Test Teardown    fermer prestashop
 *** Variables ***
 ${URL}        https://www.qualifiez.fr/monPrestashop2/prestashop/index.php
 ${HOME_TITLE}        monPrestashop
-
+${menuxPath}    //*[starts-with(@id, "category-")]/
 
 *** Test Cases ***
 test1
@@ -22,7 +21,11 @@ test2
 test3
     Survoler Vetements
     Menu Homme Doit Etre Visible
-   
+
+test4
+    ${elem}     Find element in menu    ${menuxPath}    VÊTEMENTS
+    Element Text Should Be    ${elem}    VÊTEMENTS    ignore_case=True
+    Mouse hover    ${elem}    HOMMES    ${menuxPath}
 
 
 *** Keywords ***
@@ -59,4 +62,25 @@ Menu Homme Doit Etre Visible
     Wait Until Element Is Visible    xpath=//*[@id="category-4"]/a    5s    
     Log    Le menu Homme est maintenant visible
 
+# 7/ Essaie de rendre plus generaliste
+Find element in menu
+    [Arguments]    ${path}    ${elem_name}
+    ${menu_items}    Get WebElements    xpath=${path}a
+    FOR    ${item}    IN    @{menu_items}
+        ${item_name}    Get Text    ${item}
+        IF    '${item_name}' == '${elem_name}' 
+            RETURN    ${item}
+        END
+    END
+    RETURN    ${EMPTY}
 
+Mouse hover
+    [Arguments]    ${elem}    ${subcategory}    ${path}
+    Mouse Over    ${elem}
+    ${subelem}    Find element in menu    ${path}/descendant::    ${subcategory}
+    Element Should Be Visible    ${subelem}
+    Mouse Out    ${elem}
+    # Je sais pas pourquoi mais il prend beaucoup de temps pour disparetre quelques fois
+    # C'est pourquoi j'ai mis 15s de attente.
+    Wait Until Element Is Not Visible    ${subelem}    15s
+    
