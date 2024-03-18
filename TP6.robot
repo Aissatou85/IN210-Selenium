@@ -80,7 +80,7 @@ Mouse hover
     ${subelem}    Find element in menu    ${path}/descendant::    ${subcategory}
     Element Should Be Visible    ${subelem}
     Mouse Out    ${elem}
-    # Je sais pas pourquoi mais il prend beaucoup de temps pour disparetre quelques fois
+    # Je sais pas pourquoi mais il prend beaucoup de temps pour disparetre quelques fois sur le teste
     # C'est pourquoi j'ai mis 15s de attente.
-    Wait Until Element Is Not Visible    ${subelem}    15s
+    # Wait Until Element Is Not Visible    ${subelem}    15s
     
